@@ -1,0 +1,1253 @@
+Index.html
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClearPath — MetroWest Health Navigator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --green: #1a6b4a;
+        --green-light: #e8f5ee;
+        --green-mid: #2d9b6a;
+        --cream: #faf8f3;
+        --cream-dark: #f0ece0;
+        --text: #1c1c1a;
+        --text-muted: #6b6b60;
+        --text-faint: #a8a89a;
+        --border: rgba(28, 28, 26, 0.1);
+        --border-strong: rgba(28, 28, 26, 0.2);
+        --radius: 14px;
+        --radius-sm: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--cream);
+        color: var(--text);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── HEADER ── */
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--border);
+        background: var(--cream);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo-mark {
+        width: 32px;
+        height: 32px;
+        background: var(--green);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .logo-mark svg {
+        width: 16px;
+        height: 16px;
+        fill: none;
+        stroke: white;
+        stroke-width: 2;
+        stroke-linecap: round;
+      }
+
+      .logo-text {
+        font-family: "Fraunces", serif;
+        font-size: 18px;
+        font-weight: 300;
+        color: var(--text);
+        letter-spacing: -0.02em;
+      }
+
+      .lang-switcher {
+        display: flex;
+        gap: 4px;
+        background: var(--cream-dark);
+        border-radius: 99px;
+        padding: 3px;
+      }
+
+      .lang-btn {
+        border: none;
+        background: none;
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-muted);
+        padding: 4px 10px;
+        border-radius: 99px;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+
+      .lang-btn.active {
+        background: white;
+        color: var(--green);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      /* ── SCREENS ── */
+      #screen-onboard,
+      #screen-chat {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #screen-chat {
+        display: none;
+      }
+
+      /* ── ONBOARDING ── */
+      .onboard-inner {
+        max-width: 560px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 2rem;
+        width: 100%;
+      }
+
+      .onboard-eyebrow {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--green-mid);
+        margin-bottom: 1rem;
+        opacity: 0;
+        animation: fadeUp 0.5s 0.1s forwards;
+      }
+
+      .onboard-title {
+        font-family: "Fraunces", serif;
+        font-size: clamp(28px, 5vw, 38px);
+        font-weight: 300;
+        line-height: 1.25;
+        color: var(--text);
+        margin-bottom: 0.75rem;
+        opacity: 0;
+        animation: fadeUp 0.5s 0.2s forwards;
+      }
+
+      .onboard-title em {
+        font-style: italic;
+        color: var(--green);
+      }
+
+      .onboard-sub {
+        font-size: 15px;
+        color: var(--text-muted);
+        font-weight: 300;
+        line-height: 1.6;
+        margin-bottom: 2.5rem;
+        opacity: 0;
+        animation: fadeUp 0.5s 0.3s forwards;
+      }
+
+      .onboard-question {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 1rem;
+        opacity: 0;
+        animation: fadeUp 0.5s 0.4s forwards;
+      }
+
+      .category-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        animation: fadeUp 0.5s 0.5s forwards;
+      }
+
+      .cat-btn {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1rem 1.1rem;
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.15s;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      .cat-btn:hover {
+        border-color: var(--green-mid);
+        background: var(--green-light);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(26, 107, 74, 0.1);
+      }
+
+      .cat-icon {
+        font-size: 20px;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .cat-label {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text);
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .cat-desc {
+        font-size: 12px;
+        color: var(--text-muted);
+        font-weight: 300;
+      }
+
+      .or-divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 1.25rem;
+        opacity: 0;
+        animation: fadeUp 0.5s 0.6s forwards;
+      }
+
+      .or-divider::before,
+      .or-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .or-text {
+        font-size: 12px;
+        color: var(--text-faint);
+        font-weight: 300;
+      }
+
+      .free-input-row {
+        display: flex;
+        gap: 8px;
+        opacity: 0;
+        animation: fadeUp 0.5s 0.65s forwards;
+      }
+
+      .free-input {
+        flex: 1;
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 0.875rem 1rem;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        color: var(--text);
+        outline: none;
+        transition: border-color 0.15s;
+      }
+
+      .free-input:focus {
+        border-color: var(--green-mid);
+      }
+      .free-input::placeholder {
+        color: var(--text-faint);
+      }
+
+      .send-btn {
+        background: var(--green);
+        border: none;
+        border-radius: var(--radius);
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.15s;
+        flex-shrink: 0;
+      }
+
+      .send-btn:hover {
+        background: var(--green-mid);
+        transform: scale(1.05);
+      }
+      .send-btn svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: white;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .disclaimer {
+        margin-top: 1.5rem;
+        font-size: 11px;
+        color: var(--text-faint);
+        line-height: 1.6;
+        font-weight: 300;
+        text-align: center;
+        opacity: 0;
+        animation: fadeUp 0.5s 0.75s forwards;
+      }
+
+      /* ── CHAT SCREEN ── */
+      .chat-context-bar {
+        padding: 0.75rem 1.5rem;
+        background: var(--green-light);
+        border-bottom: 1px solid rgba(26, 107, 74, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+      }
+
+      .chat-context-label {
+        color: var(--green);
+        font-weight: 500;
+      }
+
+      .restart-btn {
+        background: none;
+        border: 1px solid rgba(26, 107, 74, 0.3);
+        border-radius: 99px;
+        padding: 3px 10px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        color: var(--green);
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+
+      .restart-btn:hover {
+        background: rgba(26, 107, 74, 0.1);
+      }
+
+      .chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 680px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .msg {
+        display: flex;
+        gap: 10px;
+        animation: fadeUp 0.3s ease forwards;
+      }
+
+      .msg.user {
+        flex-direction: row-reverse;
+      }
+
+      .msg-avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 500;
+        margin-top: 2px;
+      }
+
+      .msg.bot .msg-avatar {
+        background: var(--green);
+        color: white;
+      }
+      .msg.user .msg-avatar {
+        background: var(--cream-dark);
+        color: var(--text-muted);
+      }
+
+      .msg-bubble {
+        max-width: 80%;
+        padding: 0.875rem 1rem;
+        border-radius: var(--radius);
+        font-size: 14px;
+        line-height: 1.65;
+        font-weight: 300;
+      }
+
+      .msg.bot .msg-bubble {
+        background: white;
+        border: 1px solid var(--border);
+        color: var(--text);
+        border-top-left-radius: 4px;
+      }
+
+      .msg.user .msg-bubble {
+        background: var(--green);
+        color: white;
+        border-top-right-radius: 4px;
+      }
+
+      .msg-bubble strong {
+        font-weight: 500;
+      }
+
+      .msg-bubble .resource-card {
+        background: var(--green-light);
+        border: 1px solid rgba(26, 107, 74, 0.2);
+        border-radius: var(--radius-sm);
+        padding: 0.75rem;
+        margin-top: 0.75rem;
+      }
+
+      .resource-card .rc-name {
+        font-weight: 500;
+        font-size: 13px;
+        color: var(--green);
+        margin-bottom: 4px;
+      }
+      .resource-card .rc-detail {
+        font-size: 12px;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+      .resource-card a {
+        color: var(--green);
+        text-decoration: underline;
+      }
+
+      .typing-indicator {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        padding: 0.875rem 1rem;
+      }
+
+      .typing-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--text-faint);
+        animation: typingPulse 1.2s infinite;
+      }
+
+      .typing-dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .typing-dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      @keyframes typingPulse {
+        0%,
+        60%,
+        100% {
+          opacity: 0.3;
+          transform: scale(0.8);
+        }
+        30% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .chat-input-area {
+        padding: 1rem 1.5rem 1.25rem;
+        border-top: 1px solid var(--border);
+        background: var(--cream);
+        max-width: 680px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .chat-input-row {
+        display: flex;
+        gap: 8px;
+      }
+
+      .chat-input {
+        flex: 1;
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 0.875rem 1rem;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        color: var(--text);
+        outline: none;
+        resize: none;
+        transition: border-color 0.15s;
+        line-height: 1.5;
+      }
+
+      .chat-input:focus {
+        border-color: var(--green-mid);
+      }
+      .chat-input::placeholder {
+        color: var(--text-faint);
+      }
+
+      .chat-hint {
+        font-size: 11px;
+        color: var(--text-faint);
+        margin-top: 6px;
+        font-weight: 300;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── API KEY NOTICE ── */
+      .api-notice {
+        background: #fff8e6;
+        border: 1px solid #f0c040;
+        border-radius: var(--radius-sm);
+        padding: 0.75rem 1rem;
+        font-size: 12px;
+        color: #7a5c00;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+        display: none;
+      }
+
+      .api-notice.show {
+        display: block;
+      }
+      .api-notice strong {
+        font-weight: 500;
+      }
+
+      @media (max-width: 480px) {
+        .category-grid {
+          grid-template-columns: 1fr;
+        }
+        .onboard-inner {
+          padding: 2rem 1rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 16 16">
+            <path
+              d="M8 2 C5 2 3 4 3 7 C3 10 5 12 8 14 C11 12 13 10 13 7 C13 4 11 2 8 2Z"
+            />
+            <path d="M8 5 L8 9 M6 7 L10 7" stroke-width="1.5" />
+          </svg>
+        </div>
+        <span class="logo-text">ClearPath</span>
+      </div>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" onclick="setLang('pt')">PT</button>
+      </div>
+    </header>
+
+    <!-- ONBOARDING SCREEN -->
+    <div id="screen-onboard">
+      <div class="onboard-inner">
+        <div class="api-notice" id="api-notice">
+          <strong>Developer setup:</strong> Add your Gemini API key on line 1 of
+          the script below (<code>const GEMINI_KEY = "YOUR_KEY_HERE"</code>).
+          Get a free key at
+          <a href="https://aistudio.google.com" target="_blank"
+            >aistudio.google.com</a
+          >.
+        </div>
+        <div class="onboard-eyebrow" id="txt-eyebrow">
+          Free · Confidential · MetroWest
+        </div>
+        <h1 class="onboard-title" id="txt-title">
+          Find <em>free healthcare</em> in MetroWest — in your language
+        </h1>
+        <p class="onboard-sub" id="txt-sub">
+          No insurance? No problem. ClearPath connects you to real local
+          clinics, coverage programs, and free prescriptions — available in
+          English, Spanish, and Portuguese.
+        </p>
+        <p class="onboard-question" id="txt-question">
+          What kind of help do you need?
+        </p>
+        <div class="category-grid" id="cat-grid">
+          <!-- populated by JS -->
+        </div>
+        <div class="or-divider">
+          <span class="or-text" id="txt-or">or describe your situation</span>
+        </div>
+        <div class="free-input-row">
+          <input
+            class="free-input"
+            id="free-input"
+            type="text"
+            placeholder="e.g. I need a doctor but have no insurance..."
+          />
+          <button class="send-btn" onclick="startFromFreeText()">
+            <svg viewBox="0 0 24 24">
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+          </button>
+        </div>
+        <p class="disclaimer" id="txt-disclaimer">
+          ClearPath does not provide medical advice. We connect you to existing
+          community resources only. In an emergency, call 911.
+        </p>
+      </div>
+    </div>
+
+    <!-- CHAT SCREEN -->
+    <div id="screen-chat">
+      <div class="chat-context-bar">
+        <span class="chat-context-label" id="chat-context-label"
+          >Free Clinics</span
+        >
+        <button class="restart-btn" onclick="restartApp()" id="txt-restart">
+          Start over
+        </button>
+      </div>
+      <div class="chat-messages" id="chat-messages"></div>
+      <div
+        style="max-width: 680px; width: 100%; margin: 0 auto; padding: 0 1.5rem"
+      >
+        <div class="api-notice" id="api-notice-chat"></div>
+      </div>
+      <div class="chat-input-area">
+        <div class="chat-input-row">
+          <textarea
+            class="chat-input"
+            id="chat-input"
+            rows="1"
+            placeholder="Ask a follow-up question..."
+          ></textarea>
+          <button class="send-btn" onclick="sendMessage()">
+            <svg viewBox="0 0 24 24">
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
+          </button>
+        </div>
+        <p class="chat-hint" id="txt-hint">
+          Press Enter to send · Shift+Enter for new line
+        </p>
+      </div>
+    </div>
+
+    <script>
+      const GEMINI_KEY = "YOUR_KEY_HERE";
+
+      // ── TRANSLATIONS ──
+      const T = {
+        en: {
+          eyebrow: "Free · Confidential · MetroWest",
+          title: [
+            "Find ",
+            "free healthcare",
+            " in MetroWest — in your language",
+          ],
+          sub: "No insurance? No problem. ClearPath connects you to real local clinics, coverage programs, and free prescriptions — available in English, Spanish, and Portuguese.",
+          question: "What kind of help do you need?",
+          or: "or describe your situation",
+          placeholder: "e.g. I need a doctor but have no insurance...",
+          disclaimer:
+            "ClearPath does not provide medical advice. We connect you to existing community resources only. In an emergency, call 911.",
+          restart: "Start over",
+          hint: "Press Enter to send · Shift+Enter for new line",
+          chatPlaceholder: "Ask a follow-up question...",
+          thinking: "Finding resources for you...",
+          categories: [
+            {
+              id: "free_clinics",
+              icon: "🏥",
+              label: "Free Clinics",
+              desc: "See a doctor for free",
+            },
+            {
+              id: "insurance_assistance",
+              icon: "🛡️",
+              label: "Insurance Help",
+              desc: "MassHealth, Medicaid, HSN",
+            },
+            {
+              id: "prescriptions",
+              icon: "💊",
+              label: "Free Prescriptions",
+              desc: "Get medications for free or low-cost",
+            },
+            {
+              id: "community_health_centers",
+              icon: "🤝",
+              label: "Sliding Scale Care",
+              desc: "Pay only what you can",
+            },
+            {
+              id: "social_services",
+              icon: "🌱",
+              label: "Social Services",
+              desc: "Food, housing, and more",
+            },
+            {
+              id: "all",
+              icon: "🔍",
+              label: "Not Sure",
+              desc: "Tell me your situation",
+            },
+          ],
+        },
+        es: {
+          eyebrow: "Gratis · Confidencial · MetroWest",
+          title: [
+            "Encuentra ",
+            "atención médica gratuita",
+            " en MetroWest — en tu idioma",
+          ],
+          sub: "¿Sin seguro? No hay problema. ClearPath te conecta con clínicas locales reales, programas de cobertura y recetas gratuitas.",
+          question: "¿Qué tipo de ayuda necesitas?",
+          or: "o describe tu situación",
+          placeholder: "Ej: Necesito un médico pero no tengo seguro...",
+          disclaimer:
+            "ClearPath no brinda consejos médicos. Solo te conectamos con recursos comunitarios existentes. En una emergencia, llama al 911.",
+          restart: "Comenzar de nuevo",
+          hint: "Presiona Enter para enviar · Shift+Enter para nueva línea",
+          chatPlaceholder: "Haz una pregunta de seguimiento...",
+          thinking: "Buscando recursos para ti...",
+          categories: [
+            {
+              id: "free_clinics",
+              icon: "🏥",
+              label: "Clínicas Gratis",
+              desc: "Ver un médico gratis",
+            },
+            {
+              id: "insurance_assistance",
+              icon: "🛡️",
+              label: "Ayuda con Seguro",
+              desc: "MassHealth, Medicaid, HSN",
+            },
+            {
+              id: "prescriptions",
+              icon: "💊",
+              label: "Medicamentos Gratis",
+              desc: "Obtén medicamentos gratis o económicos",
+            },
+            {
+              id: "community_health_centers",
+              icon: "🤝",
+              label: "Pago por Ingresos",
+              desc: "Paga solo lo que puedas",
+            },
+            {
+              id: "social_services",
+              icon: "🌱",
+              label: "Servicios Sociales",
+              desc: "Comida, vivienda y más",
+            },
+            {
+              id: "all",
+              icon: "🔍",
+              label: "No Estoy Seguro",
+              desc: "Cuéntame tu situación",
+            },
+          ],
+        },
+        pt: {
+          eyebrow: "Grátis · Confidencial · MetroWest",
+          title: [
+            "Encontre ",
+            "saúde gratuita",
+            " no MetroWest — no seu idioma",
+          ],
+          sub: "Sem seguro? Sem problema. O ClearPath conecta você a clínicas locais reais, programas de cobertura e medicamentos gratuitos.",
+          question: "Que tipo de ajuda você precisa?",
+          or: "ou descreva sua situação",
+          placeholder: "Ex: Preciso de um médico mas não tenho seguro...",
+          disclaimer:
+            "O ClearPath não fornece aconselhamento médico. Apenas conectamos você a recursos comunitários existentes. Em uma emergência, ligue para o 911.",
+          restart: "Recomeçar",
+          hint: "Pressione Enter para enviar · Shift+Enter para nova linha",
+          chatPlaceholder: "Faça uma pergunta de acompanhamento...",
+          thinking: "Encontrando recursos para você...",
+          categories: [
+            {
+              id: "free_clinics",
+              icon: "🏥",
+              label: "Clínicas Gratuitas",
+              desc: "Ver um médico gratuitamente",
+            },
+            {
+              id: "insurance_assistance",
+              icon: "🛡️",
+              label: "Ajuda com Seguro",
+              desc: "MassHealth, Medicaid, HSN",
+            },
+            {
+              id: "prescriptions",
+              icon: "💊",
+              label: "Medicamentos Grátis",
+              desc: "Medicamentos gratuitos ou acessíveis",
+            },
+            {
+              id: "community_health_centers",
+              icon: "🤝",
+              label: "Pagamento por Renda",
+              desc: "Pague apenas o que puder",
+            },
+            {
+              id: "social_services",
+              icon: "🌱",
+              label: "Serviços Sociais",
+              desc: "Comida, moradia e mais",
+            },
+            {
+              id: "all",
+              icon: "🔍",
+              label: "Não Tenho Certeza",
+              desc: "Me conte sua situação",
+            },
+          ],
+        },
+      };
+
+      let currentLang = "en";
+      let resourceDB = null;
+      let conversationHistory = [];
+      let currentCategory = null;
+
+      // ── INIT ──
+      async function init() {
+        if (GEMINI_KEY === "YOUR_KEY_HERE") {
+          document.getElementById("api-notice").classList.add("show");
+        }
+        try {
+          const r = await fetch("resources.json");
+          resourceDB = await r.json();
+        } catch (e) {
+          console.warn("resources.json not found — using embedded fallback");
+          resourceDB = getEmbeddedDB();
+        }
+        renderCategories();
+      }
+
+      function setLang(lang) {
+        currentLang = lang;
+        document
+          .querySelectorAll(".lang-btn")
+          .forEach((b) => b.classList.remove("active"));
+        document
+          .querySelector(`.lang-btn[onclick="setLang('${lang}')"]`)
+          .classList.add("active");
+        renderOnboard();
+      }
+
+      function renderOnboard() {
+        const t = T[currentLang];
+        document.getElementById("txt-eyebrow").textContent = t.eyebrow;
+        const titleEl = document.getElementById("txt-title");
+        titleEl.innerHTML =
+          t.title[0] + "<em>" + t.title[1] + "</em>" + t.title[2];
+        document.getElementById("txt-sub").textContent = t.sub;
+        document.getElementById("txt-question").textContent = t.question;
+        document.getElementById("txt-or").textContent = t.or;
+        document.getElementById("free-input").placeholder = t.placeholder;
+        document.getElementById("txt-disclaimer").textContent = t.disclaimer;
+        renderCategories();
+      }
+
+      function renderCategories() {
+        const t = T[currentLang];
+        const grid = document.getElementById("cat-grid");
+        grid.innerHTML = t.categories
+          .map(
+            (c) => `
+    <button class="cat-btn" onclick="startFromCategory('${c.id}', '${c.label}')">
+      <span class="cat-icon">${c.icon}</span>
+      <span class="cat-label">${c.label}</span>
+      <span class="cat-desc">${c.desc}</span>
+    </button>
+  `,
+          )
+          .join("");
+      }
+
+      // ── NAVIGATION ──
+      function startFromCategory(categoryId, label) {
+        currentCategory = categoryId;
+        showChatScreen(label);
+        const t = T[currentLang];
+        const intro = buildIntroMessage(categoryId);
+        addBotMessage(intro);
+      }
+
+      function startFromFreeText() {
+        const input = document.getElementById("free-input").value.trim();
+        if (!input) return;
+        currentCategory = "all";
+        showChatScreen(
+          T[currentLang].categories.find((c) => c.id === "all").label,
+        );
+        addUserMessage(input);
+        askGemini(input);
+      }
+
+      function showChatScreen(label) {
+        document.getElementById("screen-onboard").style.display = "none";
+        document.getElementById("screen-chat").style.display = "flex";
+        document.getElementById("chat-context-label").textContent = label;
+        document.getElementById("txt-restart").textContent =
+          T[currentLang].restart;
+        document.getElementById("chat-input").placeholder =
+          T[currentLang].chatPlaceholder;
+        document.getElementById("txt-hint").textContent = T[currentLang].hint;
+        if (GEMINI_KEY === "YOUR_KEY_HERE") {
+          const n = document.getElementById("api-notice-chat");
+          n.innerHTML =
+            '<strong>Developer setup:</strong> Replace <code>YOUR_KEY_HERE</code> in the script with your Gemini API key to activate AI responses. Get a free key at <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a>.';
+          n.classList.add("show");
+        }
+      }
+
+      function restartApp() {
+        document.getElementById("screen-chat").style.display = "none";
+        document.getElementById("screen-onboard").style.display = "flex";
+        document.getElementById("chat-messages").innerHTML = "";
+        conversationHistory = [];
+        currentCategory = null;
+        document.getElementById("free-input").value = "";
+      }
+
+      // ── INTRO MESSAGES ──
+      function buildIntroMessage(categoryId) {
+        if (!resourceDB) return "Loading resources...";
+        const lang = currentLang;
+        const intros = {
+          en: {
+            free_clinics:
+              "I found **free clinics in MetroWest** that serve uninsured and underinsured residents. Here are the main options:",
+            insurance_assistance:
+              "Let me show you **health insurance options** you may qualify for — many MetroWest residents don't know these programs exist:",
+            prescriptions:
+              "Here are ways to get **free or low-cost prescriptions** without insurance:",
+            community_health_centers:
+              "These **community health centers** charge based on your income — many people pay very little or nothing:",
+            social_services:
+              "Here are **local social services** covering food, housing, utilities, and more:",
+            all: "I'm here to help. Tell me what you need and I'll find the right local resources for you.",
+          },
+          es: {
+            free_clinics:
+              "Encontré **clínicas gratuitas en MetroWest** que atienden a residentes sin seguro:",
+            insurance_assistance:
+              "Aquí están las **opciones de seguro médico** para las que podría calificar:",
+            prescriptions:
+              "Formas de obtener **medicamentos gratis o económicos** sin seguro:",
+            community_health_centers:
+              "Estos **centros de salud comunitaria** cobran según sus ingresos:",
+            social_services:
+              "Aquí están los **servicios sociales locales** para comida, vivienda y más:",
+            all: "Estoy aquí para ayudar. Cuéntame qué necesitas.",
+          },
+          pt: {
+            free_clinics:
+              "Encontrei **clínicas gratuitas no MetroWest** que atendem residentes sem seguro:",
+            insurance_assistance:
+              "Aqui estão as **opções de seguro de saúde** para as quais você pode se qualificar:",
+            prescriptions:
+              "Maneiras de obter **medicamentos gratuitos ou acessíveis** sem seguro:",
+            community_health_centers:
+              "Estes **centros de saúde comunitária** cobram com base na sua renda:",
+            social_services:
+              "Aqui estão os **serviços sociais locais** para comida, moradia e mais:",
+            all: "Estou aqui para ajudar. Me diga o que você precisa.",
+          },
+        };
+
+        let msg = (intros[lang] || intros.en)[categoryId] || intros[lang].all;
+
+        if (categoryId !== "all" && resourceDB.categories[categoryId]) {
+          const resources = resourceDB.categories[categoryId].resources;
+          msg +=
+            "\n\n" + resources.map((r) => formatResourceCard(r)).join("\n\n");
+          msg +=
+            "\n\n" +
+            {
+              en: "Do you have questions about any of these, or need something else?",
+              es: "¿Tienes preguntas sobre alguno de estos, o necesitas algo más?",
+              pt: "Você tem perguntas sobre algum desses, ou precisa de algo mais?",
+            }[lang];
+        }
+
+        return msg;
+      }
+
+      function formatResourceCard(r) {
+        let card = `**${r.name}**\n`;
+        if (r.address) card += `📍 ${r.address}\n`;
+        if (r.phone) card += `📞 ${r.phone}\n`;
+        if (r.cost) card += `💰 ${r.cost}\n`;
+        if (r.eligibility) card += `✓ ${r.eligibility}\n`;
+        if (r.website) card += `🔗 ${r.website}`;
+        return card;
+      }
+
+      // ── CHAT ──
+      function addUserMessage(text) {
+        const msgs = document.getElementById("chat-messages");
+        const div = document.createElement("div");
+        div.className = "msg user";
+        div.innerHTML = `<div class="msg-avatar">You</div><div class="msg-bubble">${escapeHtml(text)}</div>`;
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+        conversationHistory.push({ role: "user", parts: [{ text }] });
+      }
+
+      function addBotMessage(text) {
+        const msgs = document.getElementById("chat-messages");
+        const div = document.createElement("div");
+        div.className = "msg bot";
+        div.innerHTML = `<div class="msg-avatar">CP</div><div class="msg-bubble">${renderMarkdown(text)}</div>`;
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+        conversationHistory.push({ role: "model", parts: [{ text }] });
+      }
+
+      function showTyping() {
+        const msgs = document.getElementById("chat-messages");
+        const div = document.createElement("div");
+        div.className = "msg bot";
+        div.id = "typing-msg";
+        div.innerHTML = `<div class="msg-avatar">CP</div><div class="msg-bubble"><div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+      }
+
+      function removeTyping() {
+        const t = document.getElementById("typing-msg");
+        if (t) t.remove();
+      }
+
+      async function sendMessage() {
+        const input = document.getElementById("chat-input");
+        const text = input.value.trim();
+        if (!text) return;
+        input.value = "";
+        input.style.height = "auto";
+        addUserMessage(text);
+        await askGemini(text);
+      }
+
+      async function askGemini(userMessage) {
+        if (GEMINI_KEY === "YOUR_KEY_HERE") {
+          addBotMessage(
+            {
+              en: "Please add your Gemini API key to activate AI responses. See the yellow notice at the top.",
+              es: "Por favor agrega tu clave API de Gemini para activar las respuestas de IA.",
+              pt: "Por favor adicione sua chave de API do Gemini para ativar as respostas de IA.",
+            }[currentLang],
+          );
+          return;
+        }
+
+        showTyping();
+
+        const systemPrompt = buildSystemPrompt();
+
+        const messages = [
+          {
+            role: "user",
+            parts: [
+              { text: systemPrompt + "\n\nUser message: " + userMessage },
+            ],
+          },
+          ...conversationHistory
+            .slice(0, -1)
+            .map((m) => ({ role: m.role, parts: m.parts })),
+        ];
+
+        try {
+          const res = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_KEY}`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ contents: messages }),
+            },
+          );
+          const data = await res.json();
+          removeTyping();
+          const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (reply) {
+            addBotMessage(reply);
+          } else {
+            addBotMessage(
+              {
+                en: "I had trouble getting a response. Please try again.",
+                es: "Tuve problemas para obtener una respuesta. Por favor intenta de nuevo.",
+                pt: "Tive problemas para obter uma resposta. Por favor tente novamente.",
+              }[currentLang],
+            );
+          }
+        } catch (e) {
+          removeTyping();
+          addBotMessage(
+            {
+              en: "Network error. Please check your connection and try again.",
+              es: "Error de red. Por favor verifica tu conexión.",
+              pt: "Erro de rede. Por favor verifique sua conexão.",
+            }[currentLang],
+          );
+        }
+      }
+
+      function buildSystemPrompt() {
+        const lang = {
+          en: "English",
+          es: "Spanish",
+          pt: "Brazilian Portuguese",
+        }[currentLang];
+        const db = JSON.stringify(resourceDB, null, 2);
+        return `You are ClearPath, a compassionate healthcare navigation assistant for uninsured and underinsured residents of MetroWest, Massachusetts. 
+ 
+RULES:
+1. Always respond in ${lang}.
+2. ONLY recommend resources from the database below. Never invent phone numbers, addresses, or resources.
+3. You are a navigator, not a medical advisor. Never give medical diagnoses or treatment advice.
+4. Be warm, clear, and concise. These are people in stressful situations.
+5. If someone needs emergency care, immediately tell them to call 911 or go to MetroWest Medical Center in Framingham.
+6. If asked about something not in the database, say so honestly and suggest calling 2-1-1.
+7. Always include phone numbers and addresses when recommending resources.
+ 
+VERIFIED RESOURCE DATABASE:
+${db}`;
+      }
+
+      // ── UTILITIES ──
+      function renderMarkdown(text) {
+        return text
+          .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+          .replace(/\n\n/g, "<br><br>")
+          .replace(/\n/g, "<br>")
+          .replace(
+            /(https?:\/\/[^\s<]+)/g,
+            '<a href="$1" target="_blank">$1</a>',
+          );
+      }
+
+      function escapeHtml(text) {
+        return text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+      }
+
+      // ── KEYBOARD ──
+      document.addEventListener("DOMContentLoaded", () => {
+        const chatInput = document.getElementById("chat-input");
+        chatInput.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+          }
+        });
+        chatInput.addEventListener("input", () => {
+          chatInput.style.height = "auto";
+          chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + "px";
+        });
+        const freeInput = document.getElementById("free-input");
+        freeInput.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") startFromFreeText();
+        });
+        init();
+      });
+
+      // ── EMBEDDED FALLBACK DB (if resources.json not found) ──
+      function getEmbeddedDB() {
+        return {
+          meta: { region: "MetroWest Massachusetts" },
+          categories: {
+            free_clinics: {
+              label: { en: "Free Clinics" },
+              resources: [
+                {
+                  id: "mwfmp",
+                  name: "MetroWest Free Medical Program",
+                  address: "246 Maple Street, Suite 1, Marlborough, MA 01752",
+                  phone: "(508) 656-0740",
+                  website: "https://metrowestfreemedicalprogram.org",
+                  cost: "Free",
+                  eligibility:
+                    "Uninsured or underinsured. No documentation required.",
+                  notes:
+                    "Tuesdays (adult medicine), Thursdays (women's health), Mondays (vision). Call to schedule.",
+                },
+              ],
+            },
+            insurance_assistance: {
+              label: { en: "Insurance Help" },
+              resources: [
+                {
+                  id: "masshealth",
+                  name: "MassHealth (Medicaid)",
+                  phone: "1-800-841-2900",
+                  website: "https://www.mass.gov/masshealth",
+                  cost: "Free or very low premium",
+                  eligibility: "Income-based. Immigrants may qualify.",
+                  notes: "Call or apply online.",
+                },
+                {
+                  id: "mass_211",
+                  name: "2-1-1 Massachusetts",
+                  phone: "211",
+                  website: "https://www.mass211.org",
+                  cost: "Free",
+                  eligibility: "Anyone in Massachusetts",
+                  notes: "24/7. Best first call for any social services need.",
+                },
+              ],
+            },
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

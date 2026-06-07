@@ -1,0 +1,356 @@
+ClearPath resources · JSON
+
+{
+  "meta": {
+    "region": "MetroWest Massachusetts",
+    "last_updated": "2026-06",
+    "maintainer": "ClearPath",
+    "languages": [
+      "en",
+      "es",
+      "pt"
+    ]
+  },
+  "categories": {
+    "free_clinics": {
+      "label": {
+        "en": "Free Clinics",
+        "es": "Clínicas Gratuitas",
+        "pt": "Clínicas Gratuitas"
+      },
+      "resources": [
+        {
+          "id": "mwfmp_medicine",
+          "name": "MetroWest Free Medical Program — Adult Medicine & Women's Health",
+          "address": "246 Maple Street, Suite 1, Marlborough, MA 01752",
+          "phone": "(508) 656-0740",
+          "website": "https://metrowestfreemedicalprogram.org",
+          "hours": {
+            "adult_medicine": "Tuesdays, evenings (by appointment)",
+            "womens_health": "Thursdays, evenings (by appointment)"
+          },
+          "services": [
+            "Adult primary care",
+            "Women's health",
+            "Mental health screening",
+            "Prescriptions",
+            "Lab referrals",
+            "Insurance application help"
+          ],
+          "languages": [
+            "English",
+            "Spanish",
+            "Portuguese"
+          ],
+          "eligibility": "Uninsured or underinsured. No documentation required.",
+          "cost": "Free",
+          "appointment": true,
+          "notes": "Call to schedule. Interpreters available on-site."
+        },
+        {
+          "id": "mwfmp_vision",
+          "name": "MetroWest Free Medical Program — Vision",
+          "address": "Lexington Eye Associates, 534 Boston Post Road, Sudbury, MA 01776",
+          "phone": "(508) 656-0740",
+          "website": "https://metrowestfreemedicalprogram.org",
+          "hours": {
+            "vision": "Mondays, evenings (by appointment)"
+          },
+          "services": [
+            "Eye exams",
+            "Low-cost prescription glasses",
+            "Ophthalmology referrals"
+          ],
+          "languages": [
+            "English",
+            "Spanish",
+            "Portuguese"
+          ],
+          "eligibility": "Uninsured or underinsured.",
+          "cost": "Free",
+          "appointment": true,
+          "notes": "Call main MWFMP number to schedule."
+        },
+        {
+          "id": "gratis_health",
+          "name": "Gratis Healthcare",
+          "address": "MetroWest area (contact for current location)",
+          "phone": null,
+          "website": "https://gratishealth.org",
+          "hours": "See website for current clinic schedule",
+          "services": [
+            "Primary care",
+            "Mental health",
+            "Multiple specialties",
+            "Social services"
+          ],
+          "languages": [
+            "English",
+            "Spanish",
+            "Portuguese"
+          ],
+          "eligibility": "Uninsured or underinsured MetroWest and Greater Boston residents.",
+          "cost": "Free",
+          "appointment": true,
+          "notes": "2023 Gold Rating from National Association of Free and Charitable Clinics."
+        }
+      ]
+    },
+    "community_health_centers": {
+      "label": {
+        "en": "Community Health Centers",
+        "es": "Centros de Salud Comunitaria",
+        "pt": "Centros de Saúde Comunitária"
+      },
+      "resources": [
+        {
+          "id": "emk_framingham",
+          "name": "Edward M. Kennedy Community Health Center — Framingham",
+          "address": "Framingham, MA (multiple sites — call for address)",
+          "phone": "(508) 620-0140",
+          "website": "https://www.kennedychc.org",
+          "hours": "Monday–Friday, standard business hours (call to confirm)",
+          "services": [
+            "Primary care",
+            "Urgent care",
+            "Dental",
+            "Optometry",
+            "Behavioral health",
+            "Pharmacy",
+            "Nutrition",
+            "Social services"
+          ],
+          "languages": [
+            "English",
+            "Spanish",
+            "Portuguese",
+            "and others"
+          ],
+          "eligibility": "Open to all. Sliding scale fee based on income. No one turned away.",
+          "cost": "Sliding scale (free to low-cost based on income)",
+          "appointment": true,
+          "notes": "Federally Qualified Health Center. Accepts MassHealth, Medicare, most insurance, and uninsured patients."
+        },
+        {
+          "id": "emk_milford",
+          "name": "Edward M. Kennedy Community Health Center — Milford",
+          "address": "Milford, MA (call for address)",
+          "phone": "(508) 473-7231",
+          "website": "https://www.kennedychc.org",
+          "hours": "Monday–Friday, standard business hours (call to confirm)",
+          "services": [
+            "Primary care",
+            "Dental",
+            "Behavioral health",
+            "Social services"
+          ],
+          "languages": [
+            "English",
+            "Spanish",
+            "Portuguese"
+          ],
+          "eligibility": "Open to all. Sliding scale fee.",
+          "cost": "Sliding scale",
+          "appointment": true,
+          "notes": "Federally Qualified Health Center."
+        }
+      ]
+    },
+    "insurance_assistance": {
+      "label": {
+        "en": "Health Insurance Help",
+        "es": "Ayuda con Seguro Médico",
+        "pt": "Ajuda com Seguro de Saúde"
+      },
+      "resources": [
+        {
+          "id": "masshealth",
+          "name": "MassHealth (Medicaid)",
+          "address": null,
+          "phone": "1-800-841-2900",
+          "website": "https://www.mass.gov/masshealth",
+          "hours": "Mon–Fri 8am–5pm",
+          "services": [
+            "Free or low-cost health insurance for eligible MA residents"
+          ],
+          "languages": [
+            "English",
+            "Spanish",
+            "Portuguese",
+            "and others"
+          ],
+          "eligibility": "Income-based. Families, children, pregnant women, seniors, adults with disabilities. Immigrants may qualify depending on status.",
+          "cost": "Free or very low premium",
+          "appointment": false,
+          "notes": "Apply online at mass.gov or call. Many MetroWest residents qualify and don't know it."
+        },
+        {
+          "id": "health_safety_net",
+          "name": "Health Safety Net (HSN)",
+          "address": null,
+          "phone": "1-800-841-2900",
+          "website": "https://www.mass.gov/health-safety-net",
+          "hours": "Apply through MassHealth",
+          "services": [
+            "Covers hospital and community health center care for uninsured MA residents"
+          ],
+          "languages": [
+            "English",
+            "Spanish",
+            "Portuguese"
+          ],
+          "eligibility": "Massachusetts residents who are uninsured and don't qualify for MassHealth. Income limits apply.",
+          "cost": "Free or low cost",
+          "appointment": false,
+          "notes": "Specifically for people who don't qualify for MassHealth but still can't afford care."
+        },
+        {
+          "id": "connector",
+          "name": "Massachusetts Health Connector",
+          "address": null,
+          "phone": "1-877-623-6765",
+          "website": "https://www.mahealthconnector.org",
+          "hours": "Mon–Fri 8am–6pm",
+          "services": [
+            "Marketplace health insurance",
+            "ConnectorCare subsidized plans"
+          ],
+          "languages": [
+            "English",
+            "Spanish",
+            "Portuguese"
+          ],
+          "eligibility": "MA residents who don't have employer insurance. Subsidies available based on income.",
+          "cost": "Varies — many pay $0–$50/month with subsidies",
+          "appointment": false,
+          "notes": "ConnectorCare plans are very affordable for low-income residents."
+        }
+      ]
+    },
+    "prescriptions": {
+      "label": {
+        "en": "Free & Low-Cost Prescriptions",
+        "es": "Medicamentos Gratuitos o Económicos",
+        "pt": "Medicamentos Gratuitos ou Acessíveis"
+      },
+      "resources": [
+        {
+          "id": "rxassist",
+          "name": "RxAssist — Patient Assistance Programs",
+          "address": null,
+          "phone": null,
+          "website": "https://www.rxassist.org",
+          "hours": "Online resource",
+          "services": [
+            "Directory of free drug programs from pharmaceutical companies"
+          ],
+          "languages": [
+            "English"
+          ],
+          "eligibility": "Varies by drug and manufacturer. Generally for uninsured low-income patients.",
+          "cost": "Free",
+          "appointment": false,
+          "notes": "Search by medication name to find manufacturer assistance programs."
+        },
+        {
+          "id": "needymeds",
+          "name": "NeedyMeds",
+          "address": null,
+          "phone": "1-800-503-6897",
+          "website": "https://www.needymeds.org",
+          "hours": "Online resource",
+          "services": [
+            "Drug assistance programs",
+            "free/low-cost clinics locator",
+            "discount drug card"
+          ],
+          "languages": [
+            "English",
+            "Spanish"
+          ],
+          "eligibility": "Low-income uninsured patients.",
+          "cost": "Free",
+          "appointment": false,
+          "notes": "Their free drug discount card works at most pharmacies even without insurance."
+        },
+        {
+          "id": "goodrx",
+          "name": "GoodRx",
+          "address": null,
+          "phone": null,
+          "website": "https://www.goodrx.com",
+          "hours": "Online resource",
+          "services": [
+            "Prescription discount coupons at local pharmacies"
+          ],
+          "languages": [
+            "English",
+            "Spanish"
+          ],
+          "eligibility": "Anyone — no income requirement.",
+          "cost": "Free to use. Discounts up to 80% off retail price.",
+          "appointment": false,
+          "notes": "Works at CVS, Walgreens, Stop & Shop, and most local pharmacies."
+        }
+      ]
+    },
+    "social_services": {
+      "label": {
+        "en": "Social Services & Basic Needs",
+        "es": "Servicios Sociales y Necesidades Básicas",
+        "pt": "Serviços Sociais e Necessidades Básicas"
+      },
+      "resources": [
+        {
+          "id": "211_mass",
+          "name": "2-1-1 Massachusetts",
+          "address": null,
+          "phone": "2-1-1",
+          "website": "https://www.mass211.org",
+          "hours": "24/7",
+          "services": [
+            "Food",
+            "Housing",
+            "Utilities",
+            "Healthcare",
+            "Childcare",
+            "Transportation — referrals to hundreds of programs"
+          ],
+          "languages": [
+            "English",
+            "Spanish",
+            "Portuguese",
+            "and 150+ others"
+          ],
+          "eligibility": "Anyone in Massachusetts.",
+          "cost": "Free",
+          "appointment": false,
+          "notes": "Just dial 2-1-1 from any phone. The best first call for any social services need."
+        },
+        {
+          "id": "metrowest_community_connections",
+          "name": "MetroWest Community Connections",
+          "address": "Framingham, MA",
+          "phone": "(508) 879-0039",
+          "website": "https://www.mwcc.info",
+          "hours": "Mon–Fri, business hours",
+          "services": [
+            "Food pantry referrals",
+            "Housing assistance",
+            "Utility help",
+            "Immigration resources"
+          ],
+          "languages": [
+            "English",
+            "Spanish",
+            "Portuguese"
+          ],
+          "eligibility": "MetroWest residents in need.",
+          "cost": "Free",
+          "appointment": false,
+          "notes": "Good local connector organization for wraparound services."
+        }
+      ]
+    }
+  }
+}
